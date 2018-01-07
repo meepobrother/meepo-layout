@@ -31,3 +31,4 @@ import { MinirefreshModule } from 'meepo-minirefresh';
     ],
 })
 export class LayoutModule { }
+export * from './event';
