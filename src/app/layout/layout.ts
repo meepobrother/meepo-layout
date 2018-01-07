@@ -9,6 +9,7 @@ import { LAYOUT_HEADER_CHANGE } from '../event';
 import { Subject } from 'rxjs/Subject';
 import { Location } from '@angular/common';
 import { Title } from '@angular/platform-browser';
+import { FOOTER_HIDDEN, FOOTER_SHOWN } from 'meepo-footer';
 
 @Component({
     selector: 'layout',
@@ -43,6 +44,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
             }
         }
     };
+
+    footer$: Subject<any> = new Subject();
     constructor(
         public event: EventService,
         public location: Location,
@@ -52,6 +55,14 @@ export class LayoutComponent implements OnInit, OnDestroy {
             this.widget = { ...this.widget, ...cfg };
             if (this.widget.title.title) {
                 this.title.setTitle(this.widget.title.title);
+            }
+        });
+
+        this.footer$.debounceTime(300).subscribe(res => {
+            if (res) {
+                this.event.publish(FOOTER_SHOWN, '');
+            } else {
+                this.event.publish(FOOTER_HIDDEN, '');
             }
         });
     }
@@ -65,9 +76,12 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
     _up(e: any) {
         this.up.emit(e);
+        this.footer$.next(true);
     }
 
     _down(e: any) {
         this.down.emit(e);
+        this.footer$.next(false);
     }
+
 }
