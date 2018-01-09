@@ -48,5 +48,6 @@ export class LayoutComponent implements AfterViewInit {
             this.center.setWidth('calc(100% - ${width}px)');
         }
         this.cd.markForCheck();
+        console.log(this);
     }
 }
