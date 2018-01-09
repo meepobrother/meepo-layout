@@ -29,6 +29,29 @@ export class LayoutComponent implements AfterViewInit {
         public cd: ChangeDetectorRef
     ) { }
 
-    ngAfterViewInit() {}
-        
+    ngAfterViewInit() {
+        if (this.header || this.footer) {
+            let height: any = 0;
+            if (this.header) {
+                height += this.header.getHeight()
+            }
+            if (this.footer) {
+                height += this.footer.getHeight();
+            }
+            height = `calc(100% - ${height})`;
+            this.body.setHeight(height);
+        }
+        if (this.left || this.right) {
+            let height: any = 0;
+            if (this.left) {
+                height += this.left.getWidth()
+            }
+            if (this.right) {
+                height += this.right.getWidth();
+            }
+            height = `calc(100% - ${height})`;
+            this.center.setWidth(height);
+        }
+    }
+
 }
