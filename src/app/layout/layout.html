@@ -1,17 +1,1 @@
-<div class="header">
-    <header-container>
-        <div left (click)="widget.left.call()">{{widget.left.title}}</div>
-        <div (click)="widget.title.call()">{{widget.title.title}}</div>
-        <div right (click)="widget.right.call()">{{widget.right.title}}</div>
-    </header-container>
-</div>
-<div class="main" #main>
-    <minirefresh-default (up)="_up($event)" (down)="_down($event)">
-        <div [style.height.px]="height" class="main-container">
-            <ng-content></ng-content>
-        </div>
-    </minirefresh-default>
-</div>
-<div class="footer">
-    <footer></footer>
-</div>
+<ng-content></ng-content>

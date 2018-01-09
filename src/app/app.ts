@@ -1,34 +1,35 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
-let routes: Routes = [];
-import { IconsModule } from 'meepo-icons';
-import { EventModule } from 'meepo-event';
+
 import { LayoutComponent } from './layout/layout';
-import { HeaderModule } from 'meepo-header';
-import { FooterModule } from 'meepo-footer';
-import { MinirefreshModule } from 'meepo-minirefresh';
+import { LayoutHeaderDirective } from './layout/layout.header';
+import { LayoutFooterDirective } from './layout/layout.footer';
+import { LayoutBodyDirective } from './layout/layout.body';
+import { LayoutLeftDirective } from './layout/layout.left';
+import { LayoutRightDirective } from './layout/layout.right';
+import { LayoutCenterDirective } from './layout/layout.center';
+
+export const LayoutComponents = [
+    LayoutComponent,
+    LayoutHeaderDirective,
+    LayoutFooterDirective,
+    LayoutBodyDirective,
+    LayoutLeftDirective,
+    LayoutRightDirective,
+    LayoutCenterDirective
+];
 
 @NgModule({
     imports: [
-        CommonModule,
-        RouterModule.forChild(routes),
-        IconsModule,
-        EventModule.forRoot(),
-        HeaderModule,
-        FooterModule.forRoot({
-            url: ''
-        }),
-        MinirefreshModule
+        CommonModule
     ],
     exports: [
-        LayoutComponent
+        ...LayoutComponents
     ],
     declarations: [
-        LayoutComponent
+        ...LayoutComponents
     ],
     providers: [
     ],
 })
 export class LayoutModule { }
-export * from './event';

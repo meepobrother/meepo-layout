@@ -1,1 +1,17 @@
-<layout (up)="up($event)" (down)="down($event)"></layout>
+<layout>
+    <div layoutHeader>layout header</div>
+    <div layoutBody>
+        <layout>
+            <div layoutLeft>layout header</div>
+            <div layoutCenter>
+                <ul>
+                    <li *ngFor="let item of itmes">
+                        11111111111111111111111111111111111
+                    </li>
+                </ul>
+            </div>
+            <div layoutRight>layout footer</div>
+        </layout>
+    </div>
+    <div layoutFooter>layout footer</div>
+</layout>

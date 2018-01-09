@@ -1,15 +1,10 @@
-import {
-    Component, OnInit,
-    ViewEncapsulation, Output,
-    EventEmitter, Input, ViewChild, ElementRef,
-    OnDestroy
-} from '@angular/core';
-import { EventService } from 'meepo-event';
-import { LAYOUT_HEADER_CHANGE } from '../event';
-import { Subject } from 'rxjs/Subject';
-import { Location } from '@angular/common';
-import { Title } from '@angular/platform-browser';
-import { FOOTER_HIDDEN, FOOTER_SHOWN } from 'meepo-footer';
+import { Component, AfterViewInit, ViewEncapsulation, ContentChild, HostBinding } from '@angular/core';
+import { LayoutBodyDirective } from './layout.body';
+import { LayoutHeaderDirective } from './layout.header';
+import { LayoutFooterDirective } from './layout.footer';
+import { LayoutLeftDirective } from './layout.left';
+import { LayoutRightDirective } from './layout.right';
+import { LayoutCenterDirective } from './layout.center';
 
 @Component({
     selector: 'layout',
@@ -17,71 +12,38 @@ import { FOOTER_HIDDEN, FOOTER_SHOWN } from 'meepo-footer';
     styleUrls: ['./layout.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class LayoutComponent implements OnInit, OnDestroy {
-    @ViewChild('main') _main: ElementRef;
-    @Output() up: EventEmitter<any> = new EventEmitter();
-    @Output() down: EventEmitter<any> = new EventEmitter();
+export class LayoutComponent implements AfterViewInit {
+    @HostBinding('style.flex-direction') direction: 'column' | 'row' = 'column';
+    @ContentChild(LayoutBodyDirective) body: LayoutBodyDirective;
+    @ContentChild(LayoutHeaderDirective) header: LayoutHeaderDirective;
+    @ContentChild(LayoutFooterDirective) footer: LayoutFooterDirective;
+    @ContentChild(LayoutLeftDirective) left: LayoutLeftDirective;
+    @ContentChild(LayoutRightDirective) right: LayoutRightDirective;
+    @ContentChild(LayoutCenterDirective) center: LayoutCenterDirective;
 
-    height: number;
-    ids: any[] = [];
-    @Input() widget: any = {
-        left: {
-            title: '返回',
-            call: () => {
-                this.location.back();
-            }
-        },
-        title: {
-            title: '页面标题',
-            call: () => {
+    constructor() { }
 
+    ngAfterViewInit() {
+        if (this.body) {
+            this.direction = 'column';
+            let height = 0;
+            if (this.header) {
+                height += this.header.getHeight()
             }
-        },
-        right: {
-            title: '右边',
-            call: () => {
-                this.location.back();
+            if (this.footer) {
+                height += this.footer.getHeight()
             }
+            this.body.setHeight(`calc(100% - ${height}px)`);
+        } else if (this.center) {
+            this.direction = 'row';
+            let width = 0;
+            if (this.left) {
+                width += this.header.getWidth()
+            }
+            if (this.right) {
+                width += this.header.getWidth()
+            }
+            this.center.setWidth('calc(100% - ${width}px)');
         }
-    };
-
-    footer$: Subject<any> = new Subject();
-    constructor(
-        public event: EventService,
-        public location: Location,
-        public title: Title
-    ) {
-        this.event.subscribe(LAYOUT_HEADER_CHANGE, (cfg: any) => {
-            this.widget = { ...this.widget, ...cfg };
-            if (this.widget.title.title) {
-                this.title.setTitle(this.widget.title.title);
-            }
-        });
-
-        this.footer$.debounceTime(300).subscribe(res => {
-            if (res) {
-                this.event.publish(FOOTER_SHOWN, '');
-            } else {
-                this.event.publish(FOOTER_HIDDEN, '');
-            }
-        });
     }
-
-    ngOnInit() {
-        this.height = this._main.nativeElement.clientHeight - 79;
-        this.title.setTitle(this.widget.title.title);
-    }
-
-    ngOnDestroy() { }
-
-    _up(e: any) {
-        this.up.emit(e);
-        this.footer$.next(true);
-    }
-
-    _down(e: any) {
-        this.down.emit(e);
-        this.footer$.next(false);
-    }
-
 }

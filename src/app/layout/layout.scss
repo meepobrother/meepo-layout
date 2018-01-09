@@ -1,25 +1,14 @@
 layout {
+    position: relative;
     display: flex;
-    flex-direction: column;
     height: 100%;
-    footer {
-        background: #fff;
-        z-index: 1;
-    }
-    .main {
+    width: 100%;
+    [layoutBody] {
         flex: 1;
-        position: relative;
-        .main-container {
-            height: 100%;
-            background-color: #efefef;
-            min-height: 300px;
-        }
+        overflow: auto;
     }
-    .footer-item {
-        line-height: 1;
-    }
-    .minirefresh-upwrap {
-        display: none;
-        visibility: hidden;
+    [layoutCenter] {
+        flex: 1;
+        overflow: auto;
     }
 }
