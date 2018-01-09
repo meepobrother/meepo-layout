@@ -13,7 +13,7 @@ import { LayoutCenterDirective } from './layout.center';
     encapsulation: ViewEncapsulation.None
 })
 export class LayoutComponent implements AfterViewInit {
-    @HostBinding('style.flex-direction') direction: 'column' | 'row' = 'column';
+    @HostBinding('style.flex-direction') direction: 'column' | 'row';
     @ContentChild(LayoutBodyDirective) body: LayoutBodyDirective;
     @ContentChild(LayoutHeaderDirective) header: LayoutHeaderDirective;
     @ContentChild(LayoutFooterDirective) footer: LayoutFooterDirective;
