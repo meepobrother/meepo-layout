@@ -4,11 +4,11 @@ export class LayoutBase {
     constructor(
         public ele: ElementRef,
         public cd: ChangeDetectorRef,
-        public render: Renderer2,
-        public ref: TemplateRef<any>
+        public render: Renderer2
     ) { }
 
     setHeight(val: string): void {
+        console.log(val);
         this.render.setStyle(this.ele.nativeElement, 'height', val);
     }
 

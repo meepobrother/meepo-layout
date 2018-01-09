@@ -1,13 +1,9 @@
-layout {
+layout-h {
     position: relative;
     display: flex;
     height: 100%;
     width: 100%;
-    flex-direction: column;
-    [layoutBody] {
-        flex: 1;
-        overflow: auto;
-    }
+    flex-direction: row;
     [layoutCenter] {
         flex: 1;
         overflow: auto;

@@ -1,13 +1,15 @@
 import { Directive, HostBinding, ElementRef, ChangeDetectorRef, Renderer2, TemplateRef } from '@angular/core';
-import { LayoutBase } from './base';
-@Directive({ selector: '[layoutFooter]' })
+import { LayoutBase } from '../base';
+@Directive({
+    selector: '[layoutFooter]',
+    exportAs: 'layoutFooter'
+})
 export class LayoutFooterDirective extends LayoutBase {
     constructor(
         ele: ElementRef,
         cd: ChangeDetectorRef,
-        render: Renderer2,
-        ref: TemplateRef<any>
+        render: Renderer2
     ) {
-        super(ele, cd, render, ref);
+        super(ele, cd, render);
     }
 }

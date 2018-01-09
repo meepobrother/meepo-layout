@@ -1,17 +1,10 @@
-<layout>
-    <div layoutHeader>layout header</div>
-    <div layoutBody>
-        <layout>
-            <div layoutLeft>layout header</div>
-            <div layoutCenter>
-                <ul>
-                    <li *ngFor="let item of itmes">
-                        11111111111111111111111111111111111
-                    </li>
-                </ul>
-            </div>
-            <div layoutRight>layout footer</div>
-        </layout>
+<layout-v>
+    <div layoutHeader>
+        layout header
     </div>
-    <div layoutFooter>layout footer</div>
-</layout>
+    <div layoutBody>
+        <layout-h>
+            <div layoutCenter>layout body 儿子</div>
+        </layout-h>
+    </div>
+</layout-v>
