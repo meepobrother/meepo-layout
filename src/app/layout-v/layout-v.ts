@@ -20,10 +20,12 @@ export class LayoutVComponent implements OnInit {
         if (this.header || this.footer) {
             let height: any = 0;
             if (this.header) {
-                height += this.header.getHeight()
+                height += this.header.getHeight();
+                console.log(height);
             }
             if (this.footer) {
                 height += this.footer.getHeight();
+                console.log(height);
             }
             this.height = `calc(100% - ${height}px)`;
             this.body.setHeight(this.height);
