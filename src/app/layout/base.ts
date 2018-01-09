@@ -1,10 +1,11 @@
-import { ElementRef, ChangeDetectorRef, Renderer2 } from '@angular/core';
+import { ElementRef, ChangeDetectorRef, Renderer2, TemplateRef } from '@angular/core';
 
 export class LayoutBase {
     constructor(
         public ele: ElementRef,
         public cd: ChangeDetectorRef,
-        public render: Renderer2
+        public render: Renderer2,
+        public ref: TemplateRef<any>
     ) { }
 
     setHeight(val: string): void {
