@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewEncapsulation, ContentChild, HostBinding } from '@angular/core';
+import { Component, AfterViewInit, ViewEncapsulation, ContentChild, HostBinding, ChangeDetectorRef } from '@angular/core';
 import { LayoutBodyDirective } from './layout.body';
 import { LayoutHeaderDirective } from './layout.header';
 import { LayoutFooterDirective } from './layout.footer';
@@ -21,7 +21,9 @@ export class LayoutComponent implements AfterViewInit {
     @ContentChild(LayoutRightDirective) right: LayoutRightDirective;
     @ContentChild(LayoutCenterDirective) center: LayoutCenterDirective;
 
-    constructor() { }
+    constructor(
+        public cd: ChangeDetectorRef
+    ) { }
 
     ngAfterViewInit() {
         if (this.body) {
@@ -45,5 +47,6 @@ export class LayoutComponent implements AfterViewInit {
             }
             this.center.setWidth('calc(100% - ${width}px)');
         }
+        this.cd.markForCheck();
     }
 }
