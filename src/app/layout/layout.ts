@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewEncapsulation, ContentChild, HostBinding, ChangeDetectorRef } from '@angular/core';
+import { Component, AfterViewInit, ViewEncapsulation, Input, ContentChild, HostBinding, ChangeDetectorRef } from '@angular/core';
 import { LayoutBodyDirective } from './layout.body';
 import { LayoutHeaderDirective } from './layout.header';
 import { LayoutFooterDirective } from './layout.footer';
@@ -21,33 +21,14 @@ export class LayoutComponent implements AfterViewInit {
     @ContentChild(LayoutRightDirective) right: LayoutRightDirective;
     @ContentChild(LayoutCenterDirective) center: LayoutCenterDirective;
 
+    @Input()
+    set row(val: any) {
+        this.direction = 'row';
+    }
     constructor(
         public cd: ChangeDetectorRef
     ) { }
 
-    ngAfterViewInit() {
-        if (this.body) {
-            this.direction = 'column';
-            let height = 0;
-            if (this.header) {
-                height += this.header.getHeight()
-            }
-            if (this.footer) {
-                height += this.footer.getHeight()
-            }
-            this.body.setHeight(`calc(100% - ${height}px)`);
-        } else if (this.center) {
-            this.direction = 'row';
-            let width = 0;
-            if (this.left) {
-                width += this.left.getWidth()
-            }
-            if (this.right) {
-                width += this.right.getWidth()
-            }
-            this.center.setWidth('calc(100% - ${width}px)');
-        }
-        this.cd.markForCheck();
-        console.log(this);
-    }
+    ngAfterViewInit() {}
+        
 }
