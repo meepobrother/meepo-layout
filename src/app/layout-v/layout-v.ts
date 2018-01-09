@@ -13,7 +13,7 @@ export class LayoutVComponent implements OnInit {
     @ContentChild(LayoutBodyDirective) body: LayoutBodyDirective;
     @ContentChild(LayoutHeaderDirective) header: LayoutHeaderDirective;
     @ContentChild(LayoutFooterDirective) footer: LayoutFooterDirective;
-
+    height: string;
     constructor() { }
 
     ngOnInit() {
@@ -25,8 +25,8 @@ export class LayoutVComponent implements OnInit {
             if (this.footer) {
                 height += this.footer.getHeight();
             }
-            height = `calc(100% - ${height}px)`;
-            this.body.setHeight(height);
+            this.height = `calc(100% - ${height}px)`;
+            this.body.setHeight(this.height);
         }
     }
 }
