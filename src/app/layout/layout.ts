@@ -38,10 +38,10 @@ export class LayoutComponent implements AfterViewInit {
             this.direction = 'row';
             let width = 0;
             if (this.left) {
-                width += this.header.getWidth()
+                width += this.left.getWidth()
             }
             if (this.right) {
-                width += this.header.getWidth()
+                width += this.right.getWidth()
             }
             this.center.setWidth('calc(100% - ${width}px)');
         }
