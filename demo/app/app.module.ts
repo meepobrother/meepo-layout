@@ -4,7 +4,6 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from '../../src/app/app';
 import { RouterModule, Routes } from '@angular/router';
 let routes: Routes = [];
-import { FooterModule } from 'meepo-footer';
 @NgModule({
   declarations: [
     AppComponent
@@ -14,9 +13,6 @@ import { FooterModule } from 'meepo-footer';
     LayoutModule,
     RouterModule.forRoot(routes, {
       useHash: true
-    }),
-    FooterModule.forRoot({
-      url: './assets/footer.json'
     })
   ],
   providers: [],
