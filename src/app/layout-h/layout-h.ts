@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ContentChild } from '@angular/core';
+import { Component, AfterViewInit, ViewEncapsulation, ContentChild } from '@angular/core';
 import { LayoutCenterDirective } from './layout.center';
 import { LayoutLeftDirective } from './layout.left';
 import { LayoutRightDirective } from './layout.right';
@@ -9,14 +9,14 @@ import { LayoutRightDirective } from './layout.right';
     styleUrls: ['./layout-h.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class LayoutHComponent implements OnInit {
+export class LayoutHComponent implements AfterViewInit {
     @ContentChild(LayoutCenterDirective) center: LayoutCenterDirective;
     @ContentChild(LayoutLeftDirective) left: LayoutLeftDirective;
     @ContentChild(LayoutRightDirective) right: LayoutRightDirective;
 
     constructor() { }
 
-    ngOnInit() {
+    ngAfterViewInit() {
         if (this.left || this.right) {
             let height: any = 0;
             if (this.left) {

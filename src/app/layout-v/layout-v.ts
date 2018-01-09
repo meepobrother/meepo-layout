@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ContentChild } from '@angular/core';
+import { Component, AfterViewInit, ViewEncapsulation, ContentChild } from '@angular/core';
 import { LayoutBodyDirective } from './layout.body';
 import { LayoutFooterDirective } from './layout.footer';
 import { LayoutHeaderDirective } from './layout.header';
@@ -9,14 +9,14 @@ import { LayoutHeaderDirective } from './layout.header';
     styleUrls: ['./layout-v.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class LayoutVComponent implements OnInit {
+export class LayoutVComponent implements AfterViewInit {
     @ContentChild(LayoutBodyDirective) body: LayoutBodyDirective;
     @ContentChild(LayoutHeaderDirective) header: LayoutHeaderDirective;
     @ContentChild(LayoutFooterDirective) footer: LayoutFooterDirective;
     height: string;
     constructor() { }
 
-    ngOnInit() {
+    ngAfterViewInit() {
         if (this.header || this.footer) {
             var height: number = 0;
             if (this.header) {
