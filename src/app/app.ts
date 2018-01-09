@@ -36,3 +36,15 @@ export const LayoutComponents = [
     ],
 })
 export class LayoutModule { }
+
+
+export { LayoutVComponent } from './layout-v/layout-v';
+export { LayoutBodyDirective } from './layout-v/layout.body';
+export { LayoutFooterDirective } from './layout-v/layout.footer';
+export { LayoutHeaderDirective } from './layout-v/layout.header';
+
+export { LayoutHComponent } from './layout-h/layout-h';
+export { LayoutLeftDirective } from './layout-h/layout.left';
+export { LayoutRightDirective } from './layout-h/layout.right';
+export { LayoutCenterDirective } from './layout-h/layout.center';
+
