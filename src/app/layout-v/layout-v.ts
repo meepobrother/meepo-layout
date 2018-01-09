@@ -21,11 +21,11 @@ export class LayoutVComponent implements OnInit {
             var height: number = 0;
             if (this.header) {
                 height += this.header.getHeight();
-                console.log('header', height);
+                console.log(`header is ${height}`, this.header.ele.nativeElement);
             }
             if (this.footer) {
                 height += this.footer.getHeight();
-                console.log('footer', height);
+                console.log(`footer is ${height}`, this.footer.ele.nativeElement);
             }
             this.height = `calc(100% - ${height}px)`;
             this.body.setHeight(this.height);
