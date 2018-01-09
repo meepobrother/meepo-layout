@@ -30,6 +30,7 @@ export class LayoutComponent implements AfterViewInit {
     ) { }
 
     ngAfterViewInit() {
+        console.log(this);
         if (this.header || this.footer) {
             let height: any = 0;
             if (this.header) {
