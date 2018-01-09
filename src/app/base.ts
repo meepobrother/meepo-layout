@@ -8,7 +8,6 @@ export class LayoutBase {
     ) { }
 
     setHeight(val: string): void {
-        console.log(val);
         this.render.setStyle(this.ele.nativeElement, 'height', val);
     }
 

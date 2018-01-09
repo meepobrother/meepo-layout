@@ -1,6 +1,6 @@
 {
     "name": "meepo-layout",
-    "version": "1.7.9",
+    "version": "1.8.0",
     "description": "header for angular",
     "main": "./bundles/meepo.umd.js",
     "module": "./esm5/meepo.js",

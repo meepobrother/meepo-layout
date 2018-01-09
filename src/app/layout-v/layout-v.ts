@@ -18,14 +18,14 @@ export class LayoutVComponent implements OnInit {
 
     ngOnInit() {
         if (this.header || this.footer) {
-            let height: any = 0;
+            var height: number = 0;
             if (this.header) {
                 height += this.header.getHeight();
-                console.log(height);
+                console.log('header', height);
             }
             if (this.footer) {
                 height += this.footer.getHeight();
-                console.log(height);
+                console.log('footer', height);
             }
             this.height = `calc(100% - ${height}px)`;
             this.body.setHeight(this.height);
